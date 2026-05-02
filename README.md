@@ -34,22 +34,7 @@ localStorage.setItem("access_token", "YOUR_ACCESS_TOKEN");
 Token is NOT hardcoded
 Token is dynamically read from localStorage for every request
  Project Structure
-src/
-│
-├── api/
-│   └── client.js              # Handles API requests & headers
-│
-├── services/
-│   └── notifications.js       # Fetch notifications
-│
-├── utils/
-│   └── priority.js            # Priority + sorting logic
-│
-├── pages/
-│   └── Home.jsx               # Main UI
-│
-├── App.js
-└── index.js
+
  Business Logic
 Priority Rules:
 Placement → 3 (Highest)
