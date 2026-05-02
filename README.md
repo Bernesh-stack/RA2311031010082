@@ -1,16 +1,109 @@
-# React + Vite
+Notification System Frontend
+Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React-based frontend application that integrates with an external Notification API to display prioritized notifications for users.
 
-Currently, two official plugins are available:
+The application fetches real-time notifications, applies business logic for prioritization, and displays the top 10 most important notifications.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Tech Stack
+React (Vite)
+JavaScript (ES6+)
+Fetch API
+CSS / Minimal styling
+ API Details
 
-## React Compiler
+Base URL:
+http://20.207.122.201/evaluation-service
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Endpoint Used:
+GET /notifications
 
-## Expanding the ESLint configuration
+Authentication:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Protected API
+Requires Bearer Token
+Authorization: Bearer <access_token>
+ Token Setup
+
+Before running the app, store your access token in the browser:
+
+localStorage.setItem("access_token", "YOUR_ACCESS_TOKEN");
+
+ Note:
+
+Token is NOT hardcoded
+Token is dynamically read from localStorage for every request
+ Project Structure
+src/
+│
+├── api/
+│   └── client.js              # Handles API requests & headers
+│
+├── services/
+│   └── notifications.js       # Fetch notifications
+│
+├── utils/
+│   └── priority.js            # Priority + sorting logic
+│
+├── pages/
+│   └── Home.jsx               # Main UI
+│
+├── App.js
+└── index.js
+ Business Logic
+Priority Rules:
+Placement → 3 (Highest)
+Result → 2
+Event → 1 (Lowest)
+Sorting:
+Higher priority first
+If same priority → latest timestamp first
+Output:
+Only top 10 notifications displayed
+ Features
+Fetch notifications from external API
+Secure API calls using Bearer token
+Priority-based sorting
+Top 10 notifications display
+Clean and modular code structure
+Error handling for API failures
+Loading state handling
+▶Running the Project
+npm install
+npm run dev
+
+Open:
+http://localhost:3000
+
+ Important Notes
+No backend is used
+No mock data is used
+All data comes from the provided external API
+Token must be valid for API access
+ Error Handling
+
+Handled cases:
+
+Invalid / missing token (401)
+Network failure
+Empty response
+ Evaluation Focus
+
+This project follows:
+
+Clean architecture (API / Services / Utils separation)
+Reusable API layer
+Proper token handling
+Correct business logic implementation
+Readable and maintainable code
+ Conclusion
+
+The application successfully demonstrates:
+
+API integration
+State management
+Data transformation logic
+Clean frontend architecture
+ Author
+
+Bernesh
